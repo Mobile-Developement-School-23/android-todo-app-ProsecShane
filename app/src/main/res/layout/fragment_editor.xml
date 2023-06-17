@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/backPrimary">
+
+    <ImageButton
+        android:id="@+id/editor_exit"
+        android:src="@drawable/ic_close"
+        android:background="?attr/selectableItemBackground"
+        android:focusable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:padding="11dp"
+        app:tint="?attr/labelPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editor_save"
+        android:text="@string/save_button"
+        android:textColor="?attr/colorBlue"
+        android:background="?attr/selectableItemBackground"
+        android:focusable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <View
+        android:id="@+id/main_separator"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_margin="12dp"
+        android:background="?attr/labelSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editor_save"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editor_delete"
+        android:background="?attr/selectableItemBackground"
+        android:focusable="true"
+        app:icon="@drawable/ic_delete"
+        app:iconTint="?attr/colorRed"
+        android:text="@string/delete_button"
+        android:textColor="?attr/colorRed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <View
+        android:id="@+id/bottom_separator"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_margin="12dp"
+        android:background="?attr/labelSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editor_delete"/>
+
+    <LinearLayout
+        android:id="@+id/editor_date"
+        android:background="?attr/selectableItemBackground"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_separator"
+        app:layout_constraintEnd_toStartOf="@id/editor_has_date">
+
+        <TextView
+            android:id="@+id/editor_date_label"
+            android:text="@string/date_button"
+            android:textSize="16sp"
+            android:textColor="?attr/labelPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/editor_date_view"
+            android:text="@string/preview_date_placeholder"
+            android:textSize="14sp"
+            android:textColor="?attr/colorBlue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/top_separator"
+        android:layout_width="0dp"
+        android:layout_height="3dp"
+        android:layout_margin="12dp"
+        android:background="?attr/labelSecondary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editor_date"/>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/editor_has_date"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_separator"
+        app:layout_constraintBottom_toTopOf="@id/bottom_separator"/>
+
+    <RadioGroup
+        android:id="@+id/editor_importance"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/top_separator"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <RadioButton
+            android:id="@+id/editor_high"
+            android:text="@string/high_importance"
+            android:textSize="16sp"
+            android:textColor="?attr/colorRed"
+            android:drawableStart="@drawable/ic_high_importance"
+            app:drawableTint="?attr/colorRed"
+            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:checked="true"
+            android:id="@+id/editor_mid"
+            android:text="@string/mid_importance"
+            android:textSize="16sp"
+            android:textColor="?attr/labelPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/editor_low"
+            android:text="@string/low_importance"
+            android:textSize="16sp"
+            android:textColor="?attr/labelPrimary"
+            android:drawableStart="@drawable/ic_low_importance"
+            app:drawableTint="?attr/labelPrimary"
+            android:drawablePadding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/editor_importance_label"
+        android:text="@string/importance_button"
+        android:textSize="16sp"
+        android:textColor="?attr/labelPrimary"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editor_importance"
+        app:layout_constraintTop_toBottomOf="@id/editor_text"/>
+
+    <EditText
+        android:id="@+id/editor_text"
+        android:hint="@string/editor_hint"
+        android:textSize="16sp"
+        android:textColor="?attr/labelPrimary"
+        android:gravity="top|left"
+        android:padding="16dp"
+        android:background="@drawable/todo_layout_bg"
+        android:elevation="4dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editor_importance_label"
+        app:layout_constraintTop_toBottomOf="@id/main_separator"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

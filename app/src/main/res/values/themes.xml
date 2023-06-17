@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+<style name="ToDoAppStyle" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+
+    <item name="colorPrimary">@color/color_light_gray</item>
+    <item name="colorPrimaryVariant">@color/color_light_gray</item>
+    <item name="colorOnPrimary">@color/color_light_white</item>
+    <item name="colorSecondary">@color/color_light_gray</item>
+    <item name="colorSecondaryVariant">@color/color_light_gray</item>
+    <item name="colorOnSecondary">@color/color_light_gray</item>
+
+    <item name="supportSeparator">@color/support_light_separator</item>
+    <item name="supportOverlay">@color/support_light_overlay</item>
+
+    <item name="labelPrimary">@color/label_light_primary</item>
+    <item name="labelSecondary">@color/label_light_secondary</item>
+    <item name="labelTertiary">@color/label_light_tertiary</item>
+    <item name="labelDisable">@color/label_light_disable</item>
+
+    <item name="colorRed">@color/color_light_red</item>
+    <item name="colorGreen">@color/color_light_green</item>
+    <item name="colorBlue">@color/color_light_blue</item>
+
+    <item name="colorGray">@color/color_light_gray</item>
+    <item name="colorGrayLight">@color/color_light_gray_light</item>
+    <item name="colorWhite">@color/color_light_white</item>
+
+    <item name="backPrimary">@color/back_light_primary</item>
+    <item name="backSecondary">@color/back_light_secondary</item>
+    <item name="backElevated">@color/back_light_elevated</item>
+</style>
+</resources>

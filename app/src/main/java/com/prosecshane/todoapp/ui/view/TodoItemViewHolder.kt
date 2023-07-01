@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+// ViewHolder for the items in the RecyclerView
 @RequiresApi(Build.VERSION_CODES.M)
 class TodoItemViewHolder(
     itemView: View,
@@ -38,6 +39,7 @@ class TodoItemViewHolder(
 
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.US)
 
+    // Setup item text
     private fun bindTextView(text: String, importance: Importance, done: Boolean) {
         textView.text = if (text != "") text else itemView.context.getString(R.string.preview_text_placeholder)
         textView.compoundDrawablePadding = 5f.toPx.toInt()
@@ -67,6 +69,7 @@ class TodoItemViewHolder(
         }
     }
 
+    // Setup item checkbox
     private fun bindCheckBox(done: Boolean, importance: Importance) {
         checkBox.isChecked = done
         checkBox.buttonDrawable?.colorFilter = PorterDuffColorFilter(
@@ -78,6 +81,7 @@ class TodoItemViewHolder(
         )
     }
 
+    // Setup item deadline
     private fun bindDeadline(deadlineValue: Long?) {
         if (deadlineValue == null) {
             deadline.isGone = true
@@ -87,18 +91,19 @@ class TodoItemViewHolder(
         }
     }
 
+    // Setup every item
     fun bind(todoItem: TodoItem) {
+        // methods from above
         bindTextView(todoItem.text, todoItem.importance, todoItem.done)
         bindCheckBox(todoItem.done, todoItem.importance)
         bindDeadline(todoItem.deadline)
 
+        // Onclick Listeners
         checkBox.setOnClickListener {
             viewModel.onTodoItemChanged(todoItem.copy(done = !todoItem.done))
         }
         clickable.setOnClickListener {
             viewModel.setCurrentTodoItem(todoItem)
-            Log.d("MyTag))", "item text: ${todoItem.text}")
-            Log.d("MyTag))", "text: ${viewModel.currentTodoItem.value?.text}")
             navController.navigate(R.id.action_fraglist_to_fragitem)
         }
     }

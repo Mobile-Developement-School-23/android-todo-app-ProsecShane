@@ -3,7 +3,6 @@ package com.prosecshane.todoapp.ui.fragments
 import android.app.DatePickerDialog
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,24 +13,21 @@ import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.compose.runtime.currentRecomposeScope
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.data.model.Importance
 import com.prosecshane.todoapp.data.model.TodoItem
 import com.prosecshane.todoapp.ioc.ApplicationComponent
-import com.prosecshane.todoapp.ui.App
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
+// Fragment, that edits an item
 @RequiresApi(Build.VERSION_CODES.M)
 class TodoItemFragment : Fragment() {
     private val applicationComponent = ApplicationComponent()
@@ -40,15 +36,18 @@ class TodoItemFragment : Fragment() {
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.US)
     private var calendar = Calendar.getInstance()
 
+    // Get the item that we work with through ViewModel
     private fun getCurrentTodoItem(): TodoItem {
         return viewModel.currentTodoItem.value as TodoItem
     }
 
+    // Navigate to the previous Fragment
     private fun navigateTo(id: Int) {
         val navController = findNavController()
         navController.navigate(id)
     }
 
+    // Setup the Fragment and get the rootView
     private lateinit var rootView: View
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -60,19 +59,21 @@ class TodoItemFragment : Fragment() {
         return view
     }
 
+    // Update/Setup the Fragment on resume
     override fun onResume() {
         super.onResume()
-        Log.d("MyTag))", "teeext: ${viewModel.currentTodoItem.value?.text}")
         setupButtons(rootView)
         setupInteractiveViews(rootView)
     }
 
+    // Setup the Exit Button
     private fun setupExitButton(button: ImageButton) {
         button.setOnClickListener {
             navigateTo(R.id.action_fragitem_to_fraglist)
         }
     }
 
+    // Setup the Delete Button
     private fun setupDeleteButton(button: MaterialButton) {
         button.setOnClickListener {
             viewModel.onTodoItemDeleted(getCurrentTodoItem())
@@ -80,8 +81,10 @@ class TodoItemFragment : Fragment() {
         }
     }
 
+    // Setup the Save Button
     private fun setupSaveButton(rootView: View, button: MaterialButton) {
         button.setOnClickListener {
+            // Collect all data
             val currentTodoItem = getCurrentTodoItem()
             val isNewTodoItem = (currentTodoItem.id == "NEW-ITEM")
 
@@ -102,6 +105,7 @@ class TodoItemFragment : Fragment() {
             val createdOnValue = currentTodoItem.createdOn
             val editedOnValue = System.currentTimeMillis()
 
+            // Create and store the edited/new item
             var changedTodoItem = TodoItem(
                 done = doneValue,
                 text = textValue,
@@ -120,17 +124,19 @@ class TodoItemFragment : Fragment() {
         }
     }
 
+    // --- Setup all Buttons (look higher) ---
     private fun setupButtons(rootView: View) {
         setupExitButton(rootView.findViewById(R.id.editor_exit))
         setupDeleteButton(rootView.findViewById(R.id.editor_delete))
         setupSaveButton(rootView, rootView.findViewById(R.id.editor_save))
     }
 
-
+    // Setup the Text Editor
     private fun setupEditText(view: EditText, textValue: String) {
         view.setText(textValue)
     }
 
+    // Setup the Importance picker
     private fun setupRadioGroup(group: RadioGroup, importance: Importance) {
         group.check(when (importance) {
             Importance.LOW  -> R.id.editor_low
@@ -139,6 +145,7 @@ class TodoItemFragment : Fragment() {
         })
     }
 
+    // Setup the Deadline picker
     private fun setupDeadline(
         clickable: LinearLayout,
         deadlineView: TextView,
@@ -204,6 +211,7 @@ class TodoItemFragment : Fragment() {
         }
     }
 
+    // --- Setup the Interactive parts of the Fragment (all of the above before buttons) ---
     private fun setupInteractiveViews(rootView: View) {
         val currentTodoItem = viewModel.currentTodoItem.value as TodoItem
         setupEditText(rootView.findViewById(R.id.editor_text), currentTodoItem.text)

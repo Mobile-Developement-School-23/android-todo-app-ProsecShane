@@ -10,6 +10,7 @@ import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.data.model.TodoItem
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 
+// Adapter for the RecyclerView
 @RequiresApi(Build.VERSION_CODES.M)
 class TodoItemsListAdapter(
     private val viewModel: TodoItemsViewModel,

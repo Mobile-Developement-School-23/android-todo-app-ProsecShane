@@ -1,20 +1,20 @@
 <resources>
     <string name="app_name">ToDo App</string>
 
-    <string name="main_text">Мои дела</string>
-    <string name="done_amount">Выполнено — 0</string>
-    <string name="done_amount_var">Выполнено — %1$d</string>
+    <string name="main_text">My Tasks</string>
+    <string name="done_amount">Done — 0</string>
+    <string name="done_amount_var">Done — %1$d</string>
 
-    <string name="preview_text_placeholder">Без названия</string>
-    <string name="preview_date_placeholder">Без даты</string>
+    <string name="preview_text_placeholder">No description</string>
+    <string name="preview_date_placeholder">No deadline</string>
 
-    <string name="save_button">Сохранить</string>
-    <string name="delete_button">Удалить</string>
-    <string name="date_button">Сделать до</string>
-    <string name="importance_button">Важность</string>
-    <string name="editor_hint">Что надо сделать…</string>
+    <string name="save_button">Save</string>
+    <string name="delete_button">Delete</string>
+    <string name="date_button">Do before:</string>
+    <string name="importance_button">Importance</string>
+    <string name="editor_hint">Task description here…</string>
 
-    <string name="low_importance">Низкая</string>
-    <string name="mid_importance">Средняя</string>
-    <string name="high_importance">Высокая</string>
+    <string name="low_importance">Low</string>
+    <string name="mid_importance">Basic</string>
+    <string name="high_importance">Important</string>
 </resources>

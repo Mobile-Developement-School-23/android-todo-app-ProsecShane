@@ -10,6 +10,7 @@ import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 import com.prosecshane.todoapp.util.toPx
 
+// RecyclerView controller
 class TodoItemsPreviewController(
     private val activity: Activity,
     rootView: View,
@@ -21,11 +22,13 @@ class TodoItemsPreviewController(
     private val swipeRefreshLayout: SwipeRefreshLayout =
         rootView.findViewById(R.id.todo_preview_refresh)
 
+    // Setup everything below
     fun setUpViews() {
         setUpTodoItemsList()
         setUpSwipeToRefresh()
     }
 
+    // Setup the RecyclerView
     private fun setUpTodoItemsList() {
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = adapter
@@ -46,6 +49,7 @@ class TodoItemsPreviewController(
         }
     }
 
+    // Setup the refresher
     private fun setUpSwipeToRefresh() {
         swipeRefreshLayout.setOnRefreshListener {
             viewModel.updateTodoItems()

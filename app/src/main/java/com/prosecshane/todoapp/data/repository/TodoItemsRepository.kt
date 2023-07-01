@@ -2,7 +2,6 @@ package com.prosecshane.todoapp.data.repository
 
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import com.prosecshane.todoapp.data.datasource.TodoItemsDataSource
 import com.prosecshane.todoapp.data.model.TodoItem

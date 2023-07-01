@@ -4,6 +4,7 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+// Decorate items in RecyclerView
 class RecyclerOffsetItemDecoration(
     private val startOffset: Int = 0,
     private val topOffset: Int = 0,

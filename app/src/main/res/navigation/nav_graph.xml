@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/frag_menu">
+    app:startDestination="@id/frag_list">
 
     <fragment
-        android:id="@+id/frag_menu"
-        android:name="com.prosecshane.todoapp.fragments.MenuFragment"
+        android:id="@+id/frag_list"
+        android:name="com.prosecshane.todoapp.ui.fragments.ListFragment"
         android:label="Menu Fragment"
-        tools:layout="@layout/fragment_menu">
+        tools:layout="@layout/fragment_list">
         <action
-            android:id="@+id/action_frag_menu_to_frag_editor"
-            app:destination="@id/frag_editor" />
+            android:id="@+id/action_fraglist_to_fragitem"
+            app:destination="@id/frag_item" />
     </fragment>
 
     <fragment
-        android:id="@+id/frag_editor"
-        android:name="com.prosecshane.todoapp.fragments.EditorFragment"
+        android:id="@+id/frag_item"
+        android:name="com.prosecshane.todoapp.ui.fragments.TodoItemFragment"
         android:label="Editor Fragment"
-        tools:layout="@layout/fragment_editor">
+        tools:layout="@layout/fragment_item">
         <action
-            android:id="@+id/action_frag_editor_to_frag_menu"
-            app:destination="@id/frag_menu" />
+            android:id="@+id/action_fragitem_to_fraglist"
+            app:destination="@id/frag_list" />
     </fragment>
 
 </navigation>

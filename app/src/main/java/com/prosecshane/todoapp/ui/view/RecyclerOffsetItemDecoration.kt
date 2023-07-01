@@ -1,11 +1,10 @@
-package com.prosecshane.todoapp.model
+package com.prosecshane.todoapp.ui.view
 
 import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-// Декорация для расстояния между элементами в списке
-class PreviewOffsetItemDecoration(
+class RecyclerOffsetItemDecoration(
     private val startOffset: Int = 0,
     private val topOffset: Int = 0,
     private val endOffset: Int = 0,

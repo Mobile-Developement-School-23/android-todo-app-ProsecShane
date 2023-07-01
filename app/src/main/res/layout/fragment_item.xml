@@ -110,7 +110,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/editor_date"/>
 
-    <androidx.appcompat.widget.SwitchCompat
+    <CheckBox
         android:id="@+id/editor_has_date"
         android:layout_width="wrap_content"
         android:layout_height="0dp"

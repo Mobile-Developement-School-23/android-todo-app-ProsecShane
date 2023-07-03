@@ -1,5 +1,7 @@
 package com.prosecshane.todoapp.ui.stateholders
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +12,7 @@ import com.prosecshane.todoapp.data.repository.TodoItemsRepository
 import kotlinx.coroutines.launch
 
 // View Model, contains relevant information
+@RequiresApi(Build.VERSION_CODES.M)
 class TodoItemsViewModel(
     private val todoItemsRepository: TodoItemsRepository
 ) : ViewModel() {
@@ -71,7 +74,6 @@ class TodoItemsViewModel(
         viewModelScope.launch {
             todoItemsRepository.changeTodoItem(todoItem)
             updateDoneAmount()
-            // TODO: save changes locally
         }
     }
 
@@ -80,7 +82,6 @@ class TodoItemsViewModel(
         viewModelScope.launch {
             todoItemsRepository.deleteTodoItem(todoItem.id)
             updateDoneAmount()
-            // TODO: save changes locally
         }
     }
 
@@ -89,7 +90,6 @@ class TodoItemsViewModel(
         viewModelScope.launch {
             todoItemsRepository.addTodoItem(todoItem)
             updateDoneAmount()
-            // TODO: save changes locally
         }
     }
 }

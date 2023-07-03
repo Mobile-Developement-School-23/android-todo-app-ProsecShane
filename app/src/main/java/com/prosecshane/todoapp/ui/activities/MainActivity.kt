@@ -1,12 +1,16 @@
 package com.prosecshane.todoapp.ui.activities
 
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.prosecshane.todoapp.R
+import com.prosecshane.todoapp.data.repository.TodoItemsRepository
 
 // Main Activity, has the Fragment Container
+@RequiresApi(Build.VERSION_CODES.M)
 class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
@@ -21,5 +25,10 @@ class MainActivity : AppCompatActivity() {
             R.id.fragmentContainer
         ) as NavHostFragment
         navController = navHostFragment.navController
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        TodoItemsRepository.destroy()
     }
 }

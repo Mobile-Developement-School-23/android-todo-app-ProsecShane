@@ -2,6 +2,7 @@ package com.prosecshane.todoapp.ioc
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.prosecshane.todoapp.ui.fragments.ListFragment
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
@@ -19,6 +20,7 @@ class ListFragmentComponent(
     val adapter = TodoItemsListAdapter(
         viewModel,
         TodoItemsDiffCalculator(),
-        fragment.findNavController()
+        fragment.findNavController(),
+        fragment.lifecycleScope
     )
 }

@@ -18,9 +18,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.data.model.Importance
 import com.prosecshane.todoapp.data.model.TodoItem
+import com.prosecshane.todoapp.data.repository.TodoItemsRepository
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 import com.prosecshane.todoapp.util.getThemeAttrColor
 import com.prosecshane.todoapp.util.toPx
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -92,7 +96,7 @@ class TodoItemViewHolder(
     }
 
     // Setup every item
-    fun bind(todoItem: TodoItem) {
+    fun bind(todoItem: TodoItem, fragmentScope: CoroutineScope) {
         // methods from above
         bindTextView(todoItem.text, todoItem.importance, todoItem.done)
         bindCheckBox(todoItem.done, todoItem.importance)
@@ -100,7 +104,12 @@ class TodoItemViewHolder(
 
         // Onclick Listeners
         checkBox.setOnClickListener {
-            viewModel.onTodoItemChanged(todoItem.copy(done = !todoItem.done))
+            fragmentScope.launch(Dispatchers.IO) {
+                val data = TodoItemsRepository.getTaskById(todoItem.id)
+                data.done = !data.done
+                TodoItemsRepository.updateItem(data)
+                viewModel.onTodoItemChanged(todoItem.copy(done = !todoItem.done))
+            }
         }
         clickable.setOnClickListener {
             viewModel.setCurrentTodoItem(todoItem)

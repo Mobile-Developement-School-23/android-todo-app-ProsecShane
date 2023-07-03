@@ -1,5 +1,7 @@
 package com.prosecshane.todoapp.ui.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +15,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prosecshane.todoapp.R
+import com.prosecshane.todoapp.data.Constants.SHARED_PREFERENCES
 import com.prosecshane.todoapp.data.model.TodoItem
 import com.prosecshane.todoapp.ioc.ApplicationComponent
 import com.prosecshane.todoapp.ioc.ListFragmentComponent
@@ -26,6 +29,8 @@ class ListFragment : Fragment() {
     private lateinit var fragmentComponent: ListFragmentComponent
     private var previewComponent: TodoItemsPreviewComponent? = null
     private val viewModel: TodoItemsViewModel by activityViewModels { applicationComponent.viewModelFactory }
+
+    private lateinit var sharedPreferences: SharedPreferences
 
     // use navController to get to another Fragment
     private fun navigateTo(id: Int) {
@@ -41,6 +46,7 @@ class ListFragment : Fragment() {
             this,
             viewModel
         )
+        sharedPreferences = requireContext().getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
     }
 
     // Get rootView, setup Recycler View and other Views
@@ -99,4 +105,5 @@ class ListFragment : Fragment() {
         super.onDestroyView()
         previewComponent = null
     }
+
 }

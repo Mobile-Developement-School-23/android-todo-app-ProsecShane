@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.prosecshane.todoapp.R
+import com.prosecshane.todoapp.ui.App
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 import com.prosecshane.todoapp.util.toPx
 

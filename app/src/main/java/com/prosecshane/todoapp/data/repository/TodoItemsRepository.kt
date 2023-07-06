@@ -1,8 +1,11 @@
 package com.prosecshane.todoapp.data.repository
 
+import android.content.Context
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.prosecshane.todoapp.data.datasource.LocalDataSource
 import com.prosecshane.todoapp.data.datasource.TodoItemsDataSource
 import com.prosecshane.todoapp.data.model.TodoItem
 import kotlinx.coroutines.Dispatchers
@@ -17,37 +20,49 @@ class TodoItemsRepository(
     private val _todoItems = MutableLiveData<List<TodoItem>>(emptyList())
     val todoItems: LiveData<List<TodoItem>> = _todoItems
 
-    // Update the items (in Main Thread)
+    // Update the items
     @MainThread
     suspend fun updateTodoItems() {
-        val loadedTodoItems = withContext(Dispatchers.IO) { dataSource.loadTodoItems() }
-        _todoItems.value = loadedTodoItems
+       withContext(Dispatchers.IO) {
+           val loadedTodoItems = dataSource.loadTodoItems()
+           _todoItems.value = loadedTodoItems
+       }
     }
 
-    // Change an item (in Background)
+    // Change an item
     suspend fun changeTodoItem(changedTodoItem: TodoItem) {
-        val newTodoItems = withContext(Dispatchers.Default) {
-            todoItems.value.orEmpty().map { todoItem ->
-                if (todoItem.id == changedTodoItem.id) changedTodoItem
-                else todoItem.copy(editedOn = System.currentTimeMillis())
+        withContext(Dispatchers.Default) {
+            val fullyChangedTodoItem = changedTodoItem.copy(editedOn = System.currentTimeMillis())
+            val newTodoItems = todoItems.value.orEmpty().map { todoItem ->
+                if (todoItem.id == changedTodoItem.id) fullyChangedTodoItem
+                else todoItem
+            }
+            _todoItems.value = newTodoItems
+            if (dataSource is LocalDataSource) {
+                dataSource.database.todoItems().changeTodoItem(fullyChangedTodoItem)
             }
         }
-        _todoItems.value = newTodoItems
     }
 
-    // Delete an item (in Background)
-    suspend fun deleteTodoItem(todoItemId: String) {
+    // Delete an item
+    suspend fun deleteTodoItem(todoItem: TodoItem) {
         withContext(Dispatchers.Default) {
-            _todoItems.postValue(todoItems.value.orEmpty().filter { it.id != todoItemId })
+            _todoItems.postValue(todoItems.value.orEmpty().filter { it.id != todoItem.id })
+            if (dataSource is LocalDataSource) {
+                dataSource.database.todoItems().deleteTodoItem(todoItem)
+            }
         }
     }
 
-    // Add an item (in Background)
+    // Add an item
     suspend fun addTodoItem(newTodoItem: TodoItem) {
         withContext(Dispatchers.Default) {
             val appended = todoItems.value.orEmpty() as MutableList<TodoItem>
             appended.add(newTodoItem)
             _todoItems.postValue(appended)
+            if (dataSource is LocalDataSource) {
+                dataSource.database.todoItems().addTodoItem(newTodoItem)
+            }
         }
     }
 }

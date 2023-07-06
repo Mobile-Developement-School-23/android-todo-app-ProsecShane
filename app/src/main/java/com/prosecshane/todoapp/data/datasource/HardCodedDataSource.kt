@@ -1,5 +1,6 @@
 package com.prosecshane.todoapp.data.datasource
 
+import android.content.Context
 import com.prosecshane.todoapp.data.model.Importance
 import com.prosecshane.todoapp.data.model.TodoItem
 import kotlinx.coroutines.delay
@@ -7,7 +8,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 // Hard-coded examples, simulates loading logic
-class HardCodedDataResource : TodoItemsDataSource {
+class HardCodedDataSource : TodoItemsDataSource {
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.US)
     private val currentTimeMillis = System.currentTimeMillis()
     private val todoItems = mutableListOf(

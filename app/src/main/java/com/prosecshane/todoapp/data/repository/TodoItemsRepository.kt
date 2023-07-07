@@ -3,6 +3,7 @@ package com.prosecshane.todoapp.data.repository
 import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.prosecshane.todoapp.data.datasource.LocalDataSource
 import com.prosecshane.todoapp.data.datasource.TodoItemsDataSource
 import com.prosecshane.todoapp.data.model.TodoItem
 import kotlinx.coroutines.Dispatchers
@@ -26,28 +27,42 @@ class TodoItemsRepository(
 
     // Change an item (in Background)
     suspend fun changeTodoItem(changedTodoItem: TodoItem) {
+        val fullyChangedTodoItem = changedTodoItem.copy(editedOn = System.currentTimeMillis())
         val newTodoItems = withContext(Dispatchers.Default) {
             todoItems.value.orEmpty().map { todoItem ->
-                if (todoItem.id == changedTodoItem.id) changedTodoItem
-                else todoItem.copy(editedOn = System.currentTimeMillis())
+                if (todoItem.id == changedTodoItem.id) fullyChangedTodoItem
+                else todoItem
             }
         }
         _todoItems.value = newTodoItems
+        if (dataSource is LocalDataSource) {
+            withContext(Dispatchers.Default) {
+                dataSource.database.todoItems().changeTodoItem(changedTodoItem)
+            }
+        }
     }
 
     // Delete an item (in Background)
-    suspend fun deleteTodoItem(todoItemId: String) {
+    suspend fun deleteTodoItem(todoItem: TodoItem) {
         withContext(Dispatchers.Default) {
-            _todoItems.postValue(todoItems.value.orEmpty().filter { it.id != todoItemId })
+            _todoItems.postValue(todoItems.value.orEmpty().filter { it.id != todoItem.id })
+        }
+        if (dataSource is LocalDataSource) {
+            withContext(Dispatchers.Default) {
+                dataSource.database.todoItems().deleteTodoItem(todoItem)
+            }
         }
     }
 
     // Add an item (in Background)
     suspend fun addTodoItem(newTodoItem: TodoItem) {
         withContext(Dispatchers.Default) {
-            val appended = todoItems.value.orEmpty() as MutableList<TodoItem>
-            appended.add(newTodoItem)
-            _todoItems.postValue(appended)
+            _todoItems.postValue(todoItems.value.orEmpty() + listOf(newTodoItem))
+        }
+        if (dataSource is LocalDataSource) {
+            withContext(Dispatchers.Default) {
+                dataSource.database.todoItems().addTodoItem(newTodoItem)
+            }
         }
     }
 }

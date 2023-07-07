@@ -14,15 +14,16 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.data.model.TodoItem
-import com.prosecshane.todoapp.ioc.ApplicationComponent
 import com.prosecshane.todoapp.ioc.ListFragmentComponent
 import com.prosecshane.todoapp.ioc.TodoItemsPreviewComponent
+import com.prosecshane.todoapp.ui.App
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
+import com.prosecshane.todoapp.util.getDeviceId
 
 // ListFragment - first fragment, contains the list of all items
 @RequiresApi(Build.VERSION_CODES.M)
 class ListFragment : Fragment() {
-    private val applicationComponent = ApplicationComponent()
+    private val applicationComponent = App.applicationComponent()
     private lateinit var fragmentComponent: ListFragmentComponent
     private var previewComponent: TodoItemsPreviewComponent? = null
     private val viewModel: TodoItemsViewModel by activityViewModels { applicationComponent.viewModelFactory }
@@ -88,7 +89,7 @@ class ListFragment : Fragment() {
     // Setup the button to add a new item
     private fun bindAddTodoItemButton(button: FloatingActionButton) {
         button.setOnClickListener {
-            val newTodoItem = TodoItem(id = "NEW-ITEM")
+            val newTodoItem = TodoItem(id = "NEW-ITEM", deviceId = getDeviceId(requireContext()))
             viewModel.setCurrentTodoItem(newTodoItem)
             navigateTo(R.id.action_fraglist_to_fragitem)
         }

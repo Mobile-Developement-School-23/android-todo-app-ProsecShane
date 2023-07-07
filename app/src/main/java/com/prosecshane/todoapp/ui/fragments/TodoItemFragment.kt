@@ -20,8 +20,9 @@ import com.google.android.material.button.MaterialButton
 import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.data.model.Importance
 import com.prosecshane.todoapp.data.model.TodoItem
-import com.prosecshane.todoapp.ioc.ApplicationComponent
+import com.prosecshane.todoapp.ui.App
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
+import com.prosecshane.todoapp.util.getDeviceId
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -30,7 +31,7 @@ import java.util.Locale
 // Fragment, that edits an item
 @RequiresApi(Build.VERSION_CODES.M)
 class TodoItemFragment : Fragment() {
-    private val applicationComponent = ApplicationComponent()
+    private val applicationComponent = App.applicationComponent()
     private val viewModel: TodoItemsViewModel by activityViewModels { applicationComponent.viewModelFactory }
 
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.US)
@@ -112,7 +113,8 @@ class TodoItemFragment : Fragment() {
                 importance = importanceValue,
                 deadline = deadlineValue,
                 createdOn = createdOnValue,
-                editedOn = editedOnValue
+                editedOn = editedOnValue,
+                deviceId = getDeviceId(requireContext()),
             )
             if (isNewTodoItem) {
                 viewModel.onTodoItemAdded(changedTodoItem)

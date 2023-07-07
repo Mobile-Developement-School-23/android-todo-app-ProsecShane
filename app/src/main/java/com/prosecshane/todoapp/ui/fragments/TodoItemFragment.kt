@@ -20,7 +20,9 @@ import com.google.android.material.button.MaterialButton
 import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.data.model.Importance
 import com.prosecshane.todoapp.data.model.TodoItem
+import com.prosecshane.todoapp.ioc.TodoItemFragmentComponent
 import com.prosecshane.todoapp.ui.App
+import com.prosecshane.todoapp.ui.activities.MainActivity
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 import com.prosecshane.todoapp.util.getDeviceId
 import java.text.SimpleDateFormat
@@ -31,11 +33,12 @@ import java.util.Locale
 // Fragment, that edits an item
 @RequiresApi(Build.VERSION_CODES.M)
 class TodoItemFragment : Fragment() {
-    private val applicationComponent = App.applicationComponent()
-    private val viewModel: TodoItemsViewModel by activityViewModels { applicationComponent.viewModelFactory }
+    private lateinit var todoItemFragmentComponent: TodoItemFragmentComponent
+    lateinit var dateFormat: SimpleDateFormat
+    lateinit var calendar: Calendar
+    lateinit var viewModel: TodoItemsViewModel
 
-    private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.US)
-    private var calendar = Calendar.getInstance()
+    private lateinit var rootView: View
 
     // Get the item that we work with through ViewModel
     private fun getCurrentTodoItem(): TodoItem {
@@ -48,23 +51,29 @@ class TodoItemFragment : Fragment() {
         navController.navigate(id)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        todoItemFragmentComponent = (activity as MainActivity)
+            .mainActivityComponent
+            .todoItemFragmentComponent()
+        todoItemFragmentComponent.inject(this)
+    }
+
     // Setup the Fragment and get the rootView
-    private lateinit var rootView: View
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_item, container, false)
-        rootView = view
-        return view
+        rootView = inflater.inflate(R.layout.fragment_item, container, false)
+        return rootView
     }
 
     // Update/Setup the Fragment on resume
     override fun onResume() {
         super.onResume()
-        setupButtons(rootView)
-        setupInteractiveViews(rootView)
+        setupButtons()
+        setupInteractiveViews()
     }
 
     // Setup the Exit Button
@@ -83,7 +92,7 @@ class TodoItemFragment : Fragment() {
     }
 
     // Setup the Save Button
-    private fun setupSaveButton(rootView: View, button: MaterialButton) {
+    private fun setupSaveButton(button: MaterialButton) {
         button.setOnClickListener {
             // Collect all data
             val currentTodoItem = getCurrentTodoItem()
@@ -127,10 +136,10 @@ class TodoItemFragment : Fragment() {
     }
 
     // --- Setup all Buttons (look higher) ---
-    private fun setupButtons(rootView: View) {
+    private fun setupButtons() {
         setupExitButton(rootView.findViewById(R.id.editor_exit))
         setupDeleteButton(rootView.findViewById(R.id.editor_delete))
-        setupSaveButton(rootView, rootView.findViewById(R.id.editor_save))
+        setupSaveButton(rootView.findViewById(R.id.editor_save))
     }
 
     // Setup the Text Editor
@@ -214,10 +223,16 @@ class TodoItemFragment : Fragment() {
     }
 
     // --- Setup the Interactive parts of the Fragment (all of the above before buttons) ---
-    private fun setupInteractiveViews(rootView: View) {
+    private fun setupInteractiveViews() {
         val currentTodoItem = viewModel.currentTodoItem.value as TodoItem
-        setupEditText(rootView.findViewById(R.id.editor_text), currentTodoItem.text)
-        setupRadioGroup(rootView.findViewById(R.id.editor_importance), currentTodoItem.importance)
+        setupEditText(
+            rootView.findViewById(R.id.editor_text),
+            currentTodoItem.text
+        )
+        setupRadioGroup(
+            rootView.findViewById(R.id.editor_importance),
+            currentTodoItem.importance
+        )
         setupDeadline(
             rootView.findViewById(R.id.editor_date),
             rootView.findViewById(R.id.editor_date_view),

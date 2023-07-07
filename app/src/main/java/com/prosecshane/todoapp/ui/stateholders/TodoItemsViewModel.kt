@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 class TodoItemsViewModel(
     private val todoItemsRepository: TodoItemsRepository,
 ) : ViewModel() {
-    private val sharedPrefs = SharedPreferencesUtil(App.applicationContext())
+    private val sharedPrefs = SharedPreferencesUtil(App.getApplicationContext())
 
     // Show only undone or show all
     private val _onlyUndone = MutableLiveData(

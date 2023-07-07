@@ -19,7 +19,7 @@ class LocalDataSource : TodoItemsDataSource {
 
     private fun buildDatabase() {
         database = Room.databaseBuilder(
-            App.applicationContext(), TodoItemsDatabase::class.java, TABLE_NAME
+            App.getApplicationContext(), TodoItemsDatabase::class.java, TABLE_NAME
         ).addCallback(
             object : RoomDatabase.Callback() {
                 override fun onCreate(db: SupportSQLiteDatabase) {

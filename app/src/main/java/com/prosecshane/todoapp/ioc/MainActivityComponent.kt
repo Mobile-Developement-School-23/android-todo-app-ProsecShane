@@ -8,6 +8,7 @@ import com.prosecshane.todoapp.data.repository.TodoItemsRepository
 import com.prosecshane.todoapp.ui.activities.MainActivity
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 
+// Component that follows the Main Activity
 @RequiresApi(Build.VERSION_CODES.M)
 class MainActivityComponent(
     private val appComponent: ApplicationComponent,

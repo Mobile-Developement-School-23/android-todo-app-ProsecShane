@@ -1,5 +1,6 @@
 package com.prosecshane.todoapp.data.database
 
+// Constants for the Database
 object DatabaseConstants {
     const val TABLE_NAME = "todo_app.db"
 

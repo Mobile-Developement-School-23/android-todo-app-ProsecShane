@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.prosecshane.todoapp.data.model.Importance
 import java.util.UnknownFormatConversionException
 
+// Converts Importance objects to Strings
 class ImportanceConverter {
     @TypeConverter
     fun importanceToString(i: Importance): String = when (i) {

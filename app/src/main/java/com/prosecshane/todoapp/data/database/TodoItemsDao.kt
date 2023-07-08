@@ -8,6 +8,7 @@ import androidx.room.Update
 import com.prosecshane.todoapp.data.database.DatabaseConstants.TODO_ITEM_TABLE_NAME
 import com.prosecshane.todoapp.data.model.TodoItem
 
+// DAO for the Database
 @Dao
 interface TodoItemsDao {
     @Insert suspend fun addTodoItem(newTodoItem: TodoItem)

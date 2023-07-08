@@ -88,7 +88,7 @@ class HardCodedDataSource : TodoItemsDataSource {
     )
 
     override suspend fun loadTodoItems(): List<TodoItem> {
-        delay(300L);
+        delay(200L);
         return todoItems
     }
 }

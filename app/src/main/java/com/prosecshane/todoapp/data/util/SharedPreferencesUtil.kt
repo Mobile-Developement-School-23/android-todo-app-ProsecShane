@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.core.content.edit
 import com.prosecshane.todoapp.data.util.SharedPreferencesConstants.SHARED_PREFS_FILENAME
 
+// Shared Preferences class, that makes it easier to work with SP
 class SharedPreferencesUtil(context: Context) {
     private val prefs = context.getSharedPreferences(SHARED_PREFS_FILENAME, Context.MODE_PRIVATE)
 

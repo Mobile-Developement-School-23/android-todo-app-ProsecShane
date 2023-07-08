@@ -1,6 +1,8 @@
 package com.prosecshane.todoapp.data.repository
 
+import android.os.Build
 import androidx.annotation.MainThread
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.prosecshane.todoapp.data.datasource.LocalDataSource
@@ -10,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 // Repository class to store items
+@RequiresApi(Build.VERSION_CODES.M)
 class TodoItemsRepository(
     // Data source that updates the items
     private val dataSource: TodoItemsDataSource

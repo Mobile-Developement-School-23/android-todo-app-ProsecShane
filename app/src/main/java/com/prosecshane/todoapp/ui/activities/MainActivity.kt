@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         // Getting rid of the top bar
         supportActionBar?.hide()
 
+        // Dependency Injection
         mainActivityComponent = App.getApplicationComponent().mainActivityComponent()
         mainActivityComponent.inject(this)
     }

@@ -1,5 +1,7 @@
 package com.prosecshane.todoapp.ui.stateholders
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -13,9 +15,11 @@ import com.prosecshane.todoapp.ui.App
 import kotlinx.coroutines.launch
 
 // View Model, contains relevant information
+@RequiresApi(Build.VERSION_CODES.M)
 class TodoItemsViewModel(
     private val todoItemsRepository: TodoItemsRepository,
 ) : ViewModel() {
+    // Shared Prefs Worker
     private val sharedPrefs = SharedPreferencesUtil(App.getApplicationContext())
 
     // Show only undone or show all

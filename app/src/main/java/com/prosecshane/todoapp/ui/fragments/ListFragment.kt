@@ -45,6 +45,8 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_list, container, false)
+
+        // Dependency Injection
         listFragmentComponent = (activity as MainActivity)
             .mainActivityComponent
             .listFragmentComponent()

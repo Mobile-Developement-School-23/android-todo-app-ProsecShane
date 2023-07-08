@@ -14,21 +14,18 @@ import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.data.model.Importance
 import com.prosecshane.todoapp.data.model.TodoItem
 import com.prosecshane.todoapp.ioc.TodoItemFragmentComponent
-import com.prosecshane.todoapp.ui.App
 import com.prosecshane.todoapp.ui.activities.MainActivity
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 import com.prosecshane.todoapp.util.getDeviceId
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
-import java.util.Locale
 
 // Fragment, that edits an item
 @RequiresApi(Build.VERSION_CODES.M)
@@ -53,6 +50,7 @@ class TodoItemFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Dependency Injection
         todoItemFragmentComponent = (activity as MainActivity)
             .mainActivityComponent
             .todoItemFragmentComponent()

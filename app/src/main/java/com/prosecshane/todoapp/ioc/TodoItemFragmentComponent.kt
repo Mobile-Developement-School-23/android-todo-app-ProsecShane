@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
+// Component that follows the TodoItem Fragment
 @RequiresApi(Build.VERSION_CODES.M)
 class TodoItemFragmentComponent(
     private val activityComponent: MainActivityComponent

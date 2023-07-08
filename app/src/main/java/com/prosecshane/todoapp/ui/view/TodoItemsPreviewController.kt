@@ -1,7 +1,9 @@
 package com.prosecshane.todoapp.ui.view
 
 import android.app.Activity
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +13,7 @@ import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
 import com.prosecshane.todoapp.util.toPx
 
 // RecyclerView controller
+@RequiresApi(Build.VERSION_CODES.M)
 class TodoItemsPreviewController(
     private val activity: Activity,
     rootView: View,

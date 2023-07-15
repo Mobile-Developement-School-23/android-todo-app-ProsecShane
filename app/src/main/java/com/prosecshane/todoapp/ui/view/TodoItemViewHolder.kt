@@ -18,7 +18,7 @@ import com.prosecshane.todoapp.R
 import com.prosecshane.todoapp.data.model.Importance
 import com.prosecshane.todoapp.data.model.TodoItem
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel
-import com.prosecshane.todoapp.util.getThemeAttrColor
+import com.prosecshane.todoapp.util.AttrColorGetter
 import com.prosecshane.todoapp.util.toPx
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -37,6 +37,7 @@ class TodoItemViewHolder(
     private val clickable: LinearLayout = itemView.findViewById(R.id.preview_clickable)
 
     private val dateFormat = SimpleDateFormat("d MMM yyyy", Locale.US)
+    private val attrColorGetter = AttrColorGetter(itemView.context)
 
     // Setup item text
     private fun bindTextView(text: String, importance: Importance, done: Boolean) {
@@ -44,11 +45,15 @@ class TodoItemViewHolder(
         textView.compoundDrawablePadding = 5f.toPx.toInt()
         if (done) {
             textView.paintFlags = textView.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            textView.setTextColor(getThemeAttrColor(itemView.context, R.attr.labelTertiary))
+            textView.setTextColor(
+                attrColorGetter.get(com.google.android.material.R.attr.colorOnSurface)
+            )
             textView.setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0)
         } else {
             textView.paintFlags = textView.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-            textView.setTextColor(getThemeAttrColor(itemView.context, R.attr.labelPrimary))
+            textView.setTextColor(
+                attrColorGetter.get(com.google.android.material.R.attr.colorOnBackground)
+            )
             textView.setCompoundDrawablesRelativeWithIntrinsicBounds(
                 when (importance) {
                     Importance.LOW  -> R.drawable.ic_low_importance
@@ -59,9 +64,10 @@ class TodoItemViewHolder(
             if (importance == Importance.LOW || importance == Importance.HIGH) {
                 DrawableCompat.setTint(
                     textView.compoundDrawablesRelative[0],
-                    getThemeAttrColor(
-                        itemView.context,
-                        if (importance == Importance.LOW) R.attr.colorGray else R.attr.colorRed
+                    attrColorGetter.get(
+                        if (importance == Importance.LOW)
+                            com.google.android.material.R.attr.colorOnSecondary
+                        else com.google.android.material.R.attr.colorError
                     )
                 )
             }
@@ -72,10 +78,11 @@ class TodoItemViewHolder(
     private fun bindCheckBox(done: Boolean, importance: Importance) {
         checkBox.isChecked = done
         checkBox.buttonDrawable?.colorFilter = PorterDuffColorFilter(
-            getThemeAttrColor(
-                itemView.context,
-                if (done) R.attr.colorGreen
-                else (if (importance == Importance.HIGH) R.attr.colorRed else R.attr.colorGray)
+            attrColorGetter.get(
+                if (done) com.google.android.material.R.attr.colorOnError
+                else (if (importance == Importance.HIGH)
+                    com.google.android.material.R.attr.colorError
+                else com.google.android.material.R.attr.colorOnSecondary)
             ), PorterDuff.Mode.SRC_ATOP
         )
     }

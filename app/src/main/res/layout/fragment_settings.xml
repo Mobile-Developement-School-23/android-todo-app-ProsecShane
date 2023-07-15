@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground">
+
+    <ImageButton
+        android:id="@+id/settings_exit"
+        style="@style/CustomImgButton.WithMargin"
+
+        android:src="@drawable/ic_back"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/settings_title"
+        style="@style/TodoAppText.SubHeader"
+
+        android:text="@string/settings_title"
+        android:gravity="center_vertical"
+
+        android:layout_marginStart="10dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintStart_toEndOf="@id/settings_exit"
+        app:layout_constraintTop_toTopOf="@id/settings_exit"
+        app:layout_constraintBottom_toBottomOf="@id/settings_exit"/>
+
+    <View
+        android:id="@+id/settings_sep1"
+
+        android:background="@color/gray"
+
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_margin="8dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_exit"/>
+
+    <TextView
+        android:id="@+id/settings_theme_label"
+        style="@style/TodoAppText.Large"
+
+        android:text="@string/theme_title"
+        android:textStyle="bold"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_sep1"/>
+
+    <RadioGroup
+        android:id="@+id/settings_theme_group"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_theme_label">
+
+        <RadioButton
+            android:id="@+id/settings_theme_day"
+            style="@style/TodoAppText.Regular"
+
+            android:text="@string/theme_day"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/settings_theme_night"
+            style="@style/TodoAppText.Regular"
+
+            android:text="@string/theme_night"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/settings_theme_default"
+            style="@style/TodoAppText.Regular"
+
+            android:text="@string/theme_default"
+            android:checked="true"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </RadioGroup>
+
+    <View
+        android:id="@+id/settings_sep2"
+
+        android:background="@color/gray"
+
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_margin="8dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_theme_group"/>
+
+    <TextView
+        android:id="@+id/settings_notif_label"
+        style="@style/TodoAppText.Large"
+
+        android:text="@string/notif_title"
+        android:textStyle="bold"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_sep2"/>
+
+    <TextView
+        android:id="@+id/settings_notif_state"
+        style="@style/TodoAppText.Regular"
+
+        android:text="@string/notif_state_placeholder"
+
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_notif_label"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settings_notif_ask"
+        style="@style/CustomMatButton"
+
+        android:text="@string/notif_ask"
+        android:layout_marginTop="6dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/settings_notif_state"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

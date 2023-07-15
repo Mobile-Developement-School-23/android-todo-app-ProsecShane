@@ -4,8 +4,14 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
 import androidx.navigation.NavController
 import com.prosecshane.todoapp.R
+import com.prosecshane.todoapp.data.util.SharedPreferencesConstants.SETTINGS_THEME
+import com.prosecshane.todoapp.data.util.SharedPreferencesUtil
 import com.prosecshane.todoapp.ioc.MainActivityComponent
 import com.prosecshane.todoapp.ui.App
 import com.prosecshane.todoapp.ui.stateholders.TodoItemsViewModel

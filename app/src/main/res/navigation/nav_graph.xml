@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_fraglist_to_fragitem"
             app:destination="@id/frag_item" />
+        <action
+            android:id="@+id/action_fraglist_to_fragset"
+            app:destination="@id/frag_settings" />
     </fragment>
 
     <fragment
@@ -24,5 +27,16 @@
             android:id="@+id/action_fragitem_to_fraglist"
             app:destination="@id/frag_list" />
     </fragment>
+
+    <fragment
+        android:id="@+id/frag_settings"
+        android:name="com.prosecshane.todoapp.ui.fragments.SettingsFragment"
+        android:label="Settings Fragment"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_fragset_to_fraglist"
+            app:destination="@id/frag_list" />
+    </fragment>
+
 
 </navigation>

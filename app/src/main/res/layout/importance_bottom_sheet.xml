@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground">
+
+    <TextView
+        android:id="@+id/editor_importance_label"
+        style="@style/TodoAppText.Regular"
+
+        android:text="@string/importance_choice"
+
+        android:padding="8dp"
+        android:layout_margin="8dp"
+        android:layout_width="0dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editor_high"
+        style="@style/CustomMatButton"
+
+        android:text="@string/high_importance"
+        android:textColor="?attr/colorError"
+        app:strokeColor="?attr/colorError"
+        app:rippleColor="?attr/colorError"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editor_importance_label"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editor_mid"
+        style="@style/CustomMatButton"
+
+        android:text="@string/mid_importance"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editor_high"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editor_low"
+        style="@style/CustomMatButton"
+
+        android:text="@string/low_importance"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editor_mid"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

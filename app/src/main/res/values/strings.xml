@@ -17,4 +17,38 @@
     <string name="low_importance">Low</string>
     <string name="mid_importance">Basic</string>
     <string name="high_importance">Important</string>
+
+    <string name="cancel">Cancel</string>
+
+    <string name="confirm_exit_title">Confirm Exit</string>
+    <string name="confirm_exit_text">You have unsaved changes. Do you want to exit anyway?</string>
+    <string name="confirm_exit_yes">Exit anyway</string>
+
+    <string name="confirm_delete_title">Confirm Delete</string>
+    <string name="confirm_delete_text">Are you sure you want to delete this?</string>
+    <string name="confirm_delete_yes">Delete</string>
+
+    <string name="change_deadline_title">Change Deadline</string>
+    <string name="change_deadline_text">Do you want to change the deadline date?</string>
+    <string name="change_deadline_yes">Change</string>
+    <string name="change_deadline_no">Remove</string>
+
+    <string name="importance_choice">Choose importance for the task:</string>
+
+    <string name="settings_title">Settings</string>
+
+    <string name="theme_title">App Theme</string>
+    <string name="theme_day">Light Theme</string>
+    <string name="theme_night">Dark Theme</string>
+    <string name="theme_default">System Default</string>
+
+    <string name="notif_title">Notifications</string>
+    <string name="notif_state">Notifications are: %1$s</string>
+    <string name="notif_state_placeholder">Notifications are: Allowed</string>
+    <string name="notif_ask">Change permission</string>
+
+    <string name="notif_dialog_title">Notifications</string>
+    <string name="notif_dialog_text">We ask for permission to send you notifications. We need it to notify you when tasks from this app reach the deadline.</string>
+    <string name="notif_dialog_yes">Allow</string>
+    <string name="notif_dialog_no">Deny</string>
 </resources>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorBackground">
+
+    <ImageButton
+        android:id="@+id/editor_exit"
+        style="@style/CustomImgButton.WithMargin"
+
+        android:src="@drawable/ic_back"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/editor_save"
+        style="@style/CustomImgButton.WithMargin"
+
+        android:src="@drawable/ic_check"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/editor_delete"
+        style="@style/CustomImgButton.WithMargin"
+
+        android:src="@drawable/ic_close"
+
+        app:layout_constraintEnd_toStartOf="@id/editor_save"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editor_importance"
+        style="@style/CustomMatButton.Editable"
+
+        android:text="@string/mid_importance"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/editor_deadline"
+        app:layout_constraintTop_toBottomOf="@id/editor_exit"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/editor_deadline"
+        style="@style/CustomMatButton.Editable"
+
+        android:text="@string/preview_date_placeholder"
+
+        app:layout_constraintStart_toEndOf="@id/editor_importance"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editor_exit"/>
+
+    <EditText
+        android:id="@+id/editor_text"
+
+        android:hint="@string/editor_hint"
+        android:textSize="16sp"
+        android:textColor="?attr/colorOnBackground"
+        android:gravity="top|left"
+
+        android:background="@drawable/todo_layout_bg"
+        android:elevation="4dp"
+
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:padding="16dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editor_deadline"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="red">#FF3B30</color>
+    <color name="bright_red">#FF453A</color>
+
+    <color name="green">#32D74B</color>
+    <color name="bright_green">#34C759</color>
+
+    <color name="blue">#007AFF</color>
+    <color name="bright_blue">#0A84FF</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="dim_white">#F7F6F2</color>
+
+    <color name="white_T99">#99FFFFFF</color>
+    <color name="white_T66">#66FFFFFF</color>
+    <color name="white_T33">#33FFFFFF</color>
+    <color name="white_T26">#26FFFFFF</color>
+
+    <color name="gray">#8E8E93</color>
+    <color name="light_gray">#D1D1D6</color>
+    <color name="dark_gray">#3C3C3F</color>
+    <color name="darker_gray">#252528</color>
+    <color name="darkest_gray">#161618</color>
+
+    <color name="black">#000000</color>
+
+    <color name="black_T99">#99000000</color>
+    <color name="black_T52">#52000000</color>
+    <color name="black_T4D">#4D000000</color>
+    <color name="black_T33">#33000000</color>
+    <color name="black_T26">#26000000</color>
+    <color name="black_T0F">#0F000000</color>
+</resources>

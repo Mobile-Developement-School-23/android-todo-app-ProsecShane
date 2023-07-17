@@ -7,45 +7,45 @@
 
     <CheckBox
         android:id="@+id/preview_checkbox"
+
+        android:buttonTint="?attr/colorOnSecondary"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:buttonTint="?attr/supportSeparator"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/preview_clickable"
-        android:background="?attr/selectableItemBackground"
-        android:focusable="true"
         android:orientation="vertical"
+
+        android:foreground="?attr/selectableItemBackground"
+        android:focusable="true"
+
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+
         app:layout_constraintStart_toEndOf="@id/preview_checkbox"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <TextView
             android:id="@+id/preview_text"
-            android:text="@string/preview_text_placeholder"
-            android:textSize="16sp"
-            android:textColor="?attr/labelPrimary"
-            android:drawablePadding="5dp"
-            android:maxLines="3"
-            android:ellipsize="end"
-            android:padding="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            style="@style/TodoAppText.Regular.PreviewItem"
+
             android:minHeight="48dp"
-            android:gravity="center_vertical"/>
+
+            android:text="@string/preview_text_placeholder"/>
 
         <TextView
             android:id="@+id/preview_date"
+            style="@style/TodoAppText.Sub"
+
             android:text="@string/preview_date_placeholder"
-            android:textSize="14sp"
-            android:textColor="?attr/labelTertiary"
-            android:paddingHorizontal="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:textColor="?attr/colorOnSurface"
+
+            android:layout_width="match_parent"/>
 
     </LinearLayout>
 
